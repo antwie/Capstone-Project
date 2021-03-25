@@ -1,0 +1,11 @@
+{
+  "name": "trafficlight-ashesi",
+  "version": "1.0.0",
+  "description": "Capstone project",
+  "main": "manage.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emmanuel Antwi",
+  "license": "ISC"
+}
