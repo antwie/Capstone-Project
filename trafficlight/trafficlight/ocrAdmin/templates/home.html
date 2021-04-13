@@ -61,7 +61,7 @@
                                               
                                             </div>
                                             <div class="table-responsive table-responsive-data2">
-                                                <table class="table table-data2">
+                                                <table class="table table-data2" id="example4">
                                                     <thead>
                                                         <tr>
                                                           
@@ -77,38 +77,40 @@
                                                     <tbody>
                                                         {% for incidence in incidence %}
                                                             
-                                                            <tr class="tr-shadow">
+                                                            <form class="post-form" method="post">
+                                                                <tr class="tr-shadow old gradeX">
                                                                 
-                                                                <td>{{ incidence.driver.first_name }}</td>
-                                                                <td class="desc">
-                                                                    {{incidence.driver.mobile}}
-                                                                </td>
-                                                                <td ><span class="block-email ">{{incidence.licensePlate}}</span></td>
-                                                                <td>{{incidence.date_created}}</td>
-                                                                <td>
-                                                                    <!-- Can use status--denied for a red color-->
-                                                                    <span class="status--process">Paid</span>
-                                                                </td>
-                                                                <td>{{incidence.traffic_light_no}}</td>
-                                                                <td>
-                                                                    <div class="table-data-feature">
-                                                                        
-                                                                        <div class="rs-select2--sm ">
-                                                                            <select class="js-select2" name="type">
-                                                                                <option selected="selected">Edit</option>
-                                                                                <option value="">Fine paid</option>
-                                                                                <option value="">Not Paid</option>
-                                                                            </select>
-                                                                            <div class="dropDownSelect2"></div>
+                                                                    <td>{{ incidence.driver.first_name }}</td>
+                                                                    <td class="desc">
+                                                                        {{incidence.driver.mobile}}
+                                                                    </td>
+                                                                    <td ><span class="block-email ">{{incidence.licensePlate}}</span></td>
+                                                                    <td>{{incidence.date_created}}</td>
+                                                                    <td>
+                                                                        <!-- Can use status--denied for a red color-->
+                                                                        <span class="status--process">Paid</span>
+                                                                    </td>
+                                                                    <td>{{incidence.traffic_light_no}}</td>
+                                                                    <td>
+                                                                        <div class="table-data-feature">
+                                                                            
+                                                                            <div class="rs-select2--sm ">
+                                                                                <select class="js-select2" name="type">
+                                                                                    <option selected="selected">Edit</option>
+                                                                                    <option value="">Fine paid</option>
+                                                                                    <option value="">Not Paid</option>
+                                                                                </select>
+                                                                                <div class="dropDownSelect2"></div>
+                                                                            </div>
+                                                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                                <i class="zmdi zmdi-delete"></i>
+                                                                            </button>
+                                                                            
                                                                         </div>
-                                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                                            <i class="zmdi zmdi-delete"></i>
-                                                                        </button>
-                                                                        
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="spacer"></tr>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- <tr class="spacer"></tr> -->
+                                                            </form>
                                                         
                                                         {% endfor %}
                                                     </tbody>

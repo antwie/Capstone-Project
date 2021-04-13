@@ -8,6 +8,9 @@ from trafficlight.ocr.models import  UserProfile,Driver,licensePlate,Incidence
 def LoginView(request):
     return render(request, 'home.html')
 
+def TryView(request):
+    return render(request, 'daniel_try.html')
+
 #List all incidence sorted based on date added
 @login_required
 def IncidenceList(request):
