@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block nav_content %}
+<nav class="navbar-sidebar">
+    <ul class="list-unstyled navbar__list">
+        <li >
+            <a class="js-arrow" href="{% url 'ocrAdmin:incidence' %}">
+                <i class="fas fa-home"></i>Home</a>
+        </li>
+        <li class="active">
+            <a href="{% url 'ocrAdmin:drivers_list' %}">
+                <i class="fas fa-bus"></i>Car Owners</a>
+        </li>
+        <li>
+            <a href="table.html">
+                <i class="fas fa-table"></i>Tables</a>
+        </li>
+       
+        
+        <li>
+            <a href="map.html">
+                <i class="fas fa-map-marker-alt"></i>Maps</a>
+        </li>
+      
+     
+    </ul>
+</nav>
+{% endblock nav_content %}
+{% block content %}
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content ">
+                    <div class="container-fluid">
+                        <div class="row">
+                          
+                            <section class="p-t-20">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3 class="title-5 m-b-35">Vehicle Owners Data</h3>
+                                            <div class="table-data__tool">
+                                                <div class="table-data__tool-left">
+                                                    <div class="rs-select2--light rs-select2--md">
+                                                        <select class="js-select2" name="property">
+                                                            <option selected="selected">All Properties</option>
+                                                            <option value="">Option 1</option>
+                                                            <option value="">Option 2</option>
+                                                        </select>
+                                                        <div class="dropDownSelect2"></div>
+                                                    </div>
+                                                    <div class="rs-select2--light rs-select2--sm">
+                                                        <form class="form-header" action="" method="POST">
+                                                            <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                                            <!-- <button class="au-btn--submit" type="submit">
+                                                                <i class="zmdi zmdi-search"></i>
+                                                            </button> -->
+                                                        </form>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="table-data__tool-right">
+                                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                                        <i class="zmdi zmdi-plus"></i>add Driver</button>
+                                                    <!-- <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                                        <select class="js-select2" name="type">
+                                                            <option selected="selected">Export</option>
+                                                            <option value="">Option 1</option>
+                                                            <option value="">Option 2</option>
+                                                        </select>
+                                                        <div class="dropDownSelect2"></div>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive table-responsive-data2">
+                                                <table class="table table-data2">
+                                                    <thead>
+                                                        <tr>
+                                                          
+                                                            <th>name</th>
+                                                            <th>Phone</th>
+                                                            <th>Car No</th>
+                                                            <th>Vehicle type</th>
+                                                            
+                                                           
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for drivers in drivers %}
+                                                        <tr class="tr-shadow">
+                                                            
+                                                            <td>{{ drivers.first_name }} {{drivers.last_name}}</td>
+                                                            <td class="desc">
+                                                               {{drivers.mobile}}
+                                                            </td>
+                                                            <td ><span class="block-email  status--denied">{{drivers.licensePlate}}</span></td>
+                                                            <td>
+                                                                {{drivers.vehicleType}}
+                                                            </td>
+                                                            
+                                                           
+                                                             
+                                                            <td>
+                                                                <div class="table-data-feature">
+                                                                    <a href="{% url 'ocrAdmin:edit_info' drivers.id %}" style="display:block;"> 
+                                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                        <i class="zmdi zmdi-edit"></i>
+                                                                    </button>
+                                                                    </a>
+                                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                        <i class="zmdi zmdi-delete"></i>
+                                                                    </button>
+                                                                    
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="spacer"></tr>
+                                                      
+                                                        <tr class="spacer"></tr>
+                                                        
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock content %}

@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from django.db.utils import IntegrityError
-from .models import UserProfile,Driver,licensePlate,Incedence
+from .models import UserProfile,Driver,licensePlate,Incidence
 from django.contrib.auth import authenticate
 
 ####################################################
@@ -125,9 +125,44 @@ class DriverUpdateSerializer(serializers.ModelSerializer):
 
 
 #########################################################################
-
+#Post Incidence information about driver
 
 class PostCrimeDatSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Incedence
-        fields = ['traffic_light_no','licensePlate','vehicleType','color','model','offence']
+        model = Incidence
+        fields = ['Driver','traffic_light_no','licensePlate','vehicleType','color','model','offence','accuracy_score']
+        read_only_fields = ('Driver',)
+
+    def create(self, validated_data):
+        try:
+            driver = Driver.objects.filter(licensePlate= validated_data['licensePlate']).first()
+            created = Incidence.objects.create(
+                Driver = driver,
+                traffic_light_no = validated_data['traffic_light_no'],
+                licensePlate = validated_data['licensePlate'],
+                vehicleType = validated_data['vehicleType'],
+                color = validated_data['color'],
+                model =  validated_data['model'],
+                offence =  validated_data['offence'],
+                accuracy_score = validated_data['accuracy_score'],
+            )
+
+            return created
+        except IntegrityError:
+            raise ValidationError('Driver not found in our database')
+            
+       
+
+class GetCrimeDatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Incidence
+        
+        fields = ['Driver','traffic_light_no','licensePlate','vehicleType','color','model','offence','accuracy_score']
+
+
+
+class DriverListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Driver
+        
+        fields = ['title','first_name','last_name','gender','mobile','email','licensePlate','vehicleType','date_created']

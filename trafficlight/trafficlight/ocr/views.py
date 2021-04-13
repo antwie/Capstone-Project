@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User 
 from rest_framework import generics
 from rest_framework.response import Response
-from .models import UserProfile,Driver,licensePlate,Incedence
+from .models import UserProfile,Driver,licensePlate,Incidence
 from .serializers import UserSerializer, UserBasicInfoSerializer, UserLoginSerializer, UserProfileSerializer \
-    , UserUpdateSerializer, ChangePasswordSerializer, DriverUpdateSerializer, PostCrimeDatSerializer
+    , UserUpdateSerializer, ChangePasswordSerializer, DriverUpdateSerializer, PostCrimeDatSerializer, GetCrimeDatSerializer \
+        ,DriverListSerializer
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication,BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser,AllowAny
 from rest_framework.decorators import api_view
@@ -16,12 +17,10 @@ class CrimeDataCreateAPIView(generics.CreateAPIView):
     '''
     POST car number plate details from raspberry pi
     '''
-    queryset = Incedence.objects.all()
+    queryset = Incidence.objects.all()
     serializer_class = PostCrimeDatSerializer
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
-
-    
+    permission_classes = (IsAuthenticated,)    
 
 
 
@@ -31,9 +30,22 @@ class DriverList(generics.ListAPIView):
     Display all drivers in the system
     '''
     queryset = Driver.objects.all()
-    serializer_class = DriverUpdateSerializer
+    serializer_class =  DriverListSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, )
+
+
+class IncidenceList(generics.ListAPIView):
+    '''
+    Display all Indicence in the database
+    '''
+    queryset = Incidence.objects.all()
+    serializer_class = GetCrimeDatSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated, )
+
+    
+
 
 class SingleDriverInfoAPIView(generics.ListAPIView):
     '''

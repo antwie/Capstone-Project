@@ -2,7 +2,7 @@
   "name": "trafficlight-ashesi",
   "version": "1.0.0",
   "description": "Capstone project",
-  "main": "manage.py",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

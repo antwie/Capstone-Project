@@ -29,6 +29,7 @@ class licensePlate(models.Model):
     class Meta:
         db_table = "licensePlate"
 
+
 class Driver(models.Model):
     title = models.CharField(max_length=5, default="Mr.")
     first_name = models.CharField(max_length=50, blank=True)
@@ -37,9 +38,9 @@ class Driver(models.Model):
     address = models.CharField(max_length=400, blank=True)
     mobile = models.CharField(max_length=15, blank=True)
     email = models.CharField(max_length=50, blank=True)
-    licensePlate = models.ForeignKey(licensePlate, on_delete=models.CASCADE)
-    date_created  = models.DateField(default = timezone.now)
-    
+    licensePlate = models.CharField(max_length=50)
+    vehicleType = models.CharField(max_length=50, blank=True)
+    date_created  = models.DateTimeField(default = timezone.now)    
 
     def __str__(self):
         return str(self.first_name) + str(" ") + str(self.last_name)
@@ -49,18 +50,18 @@ class Driver(models.Model):
 
 
 
-class Incedence(models.Model):
+class Incidence(models.Model):
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     traffic_light_no = models.CharField(max_length=50, blank=True)
     licensePlate = models.CharField(max_length=50, blank=False)
-    vehicleType = models.CharField(max_length=50, blank=True)
     color = models.CharField(max_length=50, blank=True)
     model = models.CharField(max_length=50, blank=True)
     offence = models.CharField(max_length=50, blank=True)
-    date_created = models.DateField(default = timezone.now)
+    date_created = models.DateTimeField(default = timezone.now)
     accuracy_score = models.CharField(max_length=10, blank=True)
     
 
     def __str__(self):
-        return str(self.offence) 
+        return str(self.driver.first_name) 
 
      

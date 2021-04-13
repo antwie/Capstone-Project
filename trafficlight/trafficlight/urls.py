@@ -23,6 +23,8 @@ urlpatterns = [
     #path('api/v1/student/', include('ApplicationPortal.StudentApplication.urls', namespace='student_portal')),
     #path('api/v1/admin/', include('ApplicationPortal.AdminPortal.urls', namespace='admin_portal')),
     path('api/v1/ocr/', include('trafficlight.ocr.urls', namespace='ocr')),
+    #path('ocr/', include('trafficlight.ocrAdmin.urls', namespace='ocrAdmin')),
+    path('', include('trafficlight.ocrAdmin.urls', namespace='ocrAdmin')),
 ]
 
 # for file uploads

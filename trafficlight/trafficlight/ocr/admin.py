@@ -4,7 +4,7 @@ from rest_framework.authtoken.admin import TokenAdmin
 
 
 # Register your models here.
-admin.site.register([UserProfile,Driver,Incedence,licensePlate])
+admin.site.register([UserProfile,Driver,Incidence,licensePlate])
 
 
 class UserProfileInline(admin.StackedInline):

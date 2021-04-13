@@ -26,7 +26,7 @@ SECRET_KEY = '**z5n8q+%&le07wdq0yozy4izjvia7pu*pxx(h5ol!h8%%y+ur'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','trafficlight-ashesi.herokuapp.com']
+ALLOWED_HOSTS = ['*','ashesi-trafficlight.herokuapp.com']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trafficlight.ocr',
+    'trafficlight.ocrAdmin',
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -164,6 +165,5 @@ CORS_ALLOW_HEADERS = [
 ]
 
 
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+LOGIN_REDIRECT_URL ='/incidence/'
+LOGOUT_REDIRECT_URL = '/incidence'
