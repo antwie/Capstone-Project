@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta name="description" content="Responsive Admin Template" />
+	<meta name="author" content="SmartUniversity" />
+	<title>Ashesi Housing</title>
+	<!-- icons -->
+	<link href="{% static  'housing/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+
+	<!-- bootstrap -->
+	<link href="{% static 'housing/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+	<link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+
+	<!-- style -->
+	<link rel="stylesheet" href="{% static 'authentication/login.css' %}">
+	<!-- favicon -->
+	<link rel="shortcut icon" href="{% static 'housing/img/favicon.ico' %}" />
+
+</head>
+
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100 page-background">
+			<div class="wrap-login100">
+
+				{% block login_content %}{% endblock login_content %}
+
+				</div>
+		</div>
+	</div>
+
+	<!-- start js include path -->
+	<script src="{% static  'authentication/js/jquery.min.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static  'authentication/js/bootstrap.min.js' %}"></script>
+	<script src="{% static  'authentication/js/login.js' %}"></script>
+
+	<script src="js/login.js"></script>
+	<!-- end js include path -->
+</body>
+
+</html>

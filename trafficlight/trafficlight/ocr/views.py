@@ -12,7 +12,6 @@ from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
 
 
-
 class CrimeDataCreateAPIView(generics.CreateAPIView):
     '''
     POST car number plate details from raspberry pi

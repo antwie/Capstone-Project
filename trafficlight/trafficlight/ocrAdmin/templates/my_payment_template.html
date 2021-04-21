@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Inbox</title>
+
+    <!-- Fontfaces CSS-->
+     <!-- Fontfaces CSS-->
+     <link href="{% static 'css/font-face.css' %}" rel="stylesheet" media="all">
+     <link href="{% static 'vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+     <link href="{% static 'vendor/font-awesome-5/css/fontawesome-all.min.css'%}" rel="stylesheet" media="all">
+     <link href="{% static 'vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+  <!-- Vendor CSS-->
+  <link href="{% static 'vendor/animsition/animsition.min.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/wow/animate.css' %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/css-hamburgers/hamburgers.min.css'  %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/slick/slick.css'  %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/select2/select2.min.css'  %}" rel="stylesheet" media="all">
+  <link href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css'  %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/theme.css'  %}" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+    
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block" style="background: transparent;">
+            <div class="logo" >
+                <a href="#" style="text-align: center;">
+                    <h5 >Traffic Light</h5>
+                    <h4>ANPR Admin</h4>
+                </a>
+            </div>
+             
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container" style="padding-left: 0;">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            
+                            <div class="header-button">
+                                <div class="noti-wrap">
+                                   
+                                  
+                                    
+                                </div>
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                         
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">{{user.first_name}}</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                             
+                                             
+                                            <div class="account-dropdown__footer">
+                                                <a href="{% url 'driver:logout' %}">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+        <!-- MAIN CONTENT-->
+        <div class="main-content" style="display: flex;justify-content: center;align-items: center;">
+            <div class="section__content ">
+                <div class="container-fluid">
+                    <div class="row">
+                      
+                        <section class="p-t-20">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p> 
+                                            {{user.email}}
+                                            {{driver_id.mobile}} 
+                                            {{user.first_name}}
+                                         </p>
+                                        <div class="table-data__tool">
+                                           
+                                            <form>
+                                                
+                                                <script src="https://checkout.flutterwave.com/v3.js"></script>
+                                                <button class="au-btn-filter" type="button" onClick="makePayment()">Pay Now</button>
+                                                <script>
+                                                    function makePayment() {
+                                                      FlutterwaveCheckout({
+                                                        public_key: "FLWPUBK-396c7563d0a154f50a9f81381cdac608-X",
+                                                        tx_ref: "hooli-tx-1920bbtyt",
+                                                        amount: 0.5,
+                                                        currency: "GHS",
+                                                        country: "GH",
+                                                        payment_options: "card, mobilemoneyghana, ussd",
+                                                        redirect_url: // specified redirect URL
+                                                          "http://127.0.0.1:8000/driver/confirm/",
+                                                        meta: {
+                                                          consumer_id: 23,
+                                                          consumer_mac: "92a3-912ba-1192a",
+                                                        },
+                                                        customer: {
+                                                          email: '{{user.email}}',
+                                                          phone_number: '{{driver_id.mobile}}',
+                                                          name: '{{user.first_name}}',
+                                                        },
+                                                        callback: function (data) {
+                                                          console.log(data);
+                                                        },
+                                                        
+                                                        customizations: {
+                                                          title: "Red Light",
+                                                          description: "Payment for jumping red light",
+                                                          logo: "https://assets.piedpiper.com/logo.png",
+                                                        },
+                                                      });
+                                                    }
+                                                  </script>
+                                              </form>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+          </script>
+
+        </div>
+        <!-- END PAGE CONTAINER-->
+
+    </div>
+    <!-- Flutterwavs -->
+ 
+ 
+    <!-- Jquery JS-->
+    <!-- <script src="{% static 'vendor/jquery-3.2.1.min.js'  %}"></script> -->
+    <script src="{% static 'js/jquery.min.js'  %}"></script>
+    <script src="{% static 'js/bootstrap.min.js'  %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{% static 'vendor/bootstrap-4.1/popper.min.js'  %}"></script>
+    <script src="{% static 'vendor/bootstrap-4.1/bootstrap.min.js'  %}"></script>
+    
+    <!-- Search Table JS-->
+    <script src="{% static 'js/table_data.js'  %}"></script>
+    <script src="{% static 'js/jquery.dataTables.min.js'  %}"></script>
+
+
+    <!-- Vendor JS       -->
+    <script src="{% static 'vendor/slick/slick.min.js'  %}">
+    </script>
+    <script src="{% static 'vendor/wow/wow.min.js'  %}"></script>
+    <script src="{% static 'vendor/animsition/animsition.min.js'  %}"></script>
+    <script src="{% static 'vendor/bootstrap-progressbar/bootstrap-progressbar.min.js'  %}">
+    </script>
+    <script src="{% static 'vendor/counter-up/jquery.waypoints.min.js'  %}"></script>
+    <script src="{% static 'vendor/counter-up/jquery.counterup.min.js'  %}">
+    </script>
+    <script src="{% static 'vendor/circle-progress/circle-progress.min.js'  %}"></script>
+    <script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.js'  %}"></script>
+    <script src="{% static 'vendor/chartjs/Chart.bundle.min.js'  %}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js'  %}">
+    </script>
+
+    <!-- Main JS-->
+    <script src="{% static 'js/main.js'  %}"></script>
+
+</body>
+
+</html>
+<!-- end document-->

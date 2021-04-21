@@ -38,24 +38,13 @@
                         <form action="{% url 'ocrAdmin:edit_info' driver_info.id %}"  method="post"  class="">
                             {% csrf_token %}
 
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="select" class=" form-control-label">Title</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <select name="title" id="select"  value="" class="form-control">
-                                        <option value="{{ driver_info.title }}">{{ driver_info.title }}</option>
-                                        <option value="Mr">Mr</option>
-                                        <option value="Mrs">Mrs</option>
-                                    </select>
-                                </div>
-                            </div>
+                           
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="email-input" class=" form-control-label" >First Name</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="first_name" name="first_name" value="{{ driver_info.first_name }}" class="form-control">
+                                    <input type="text" id="first_name" name="first_name" value="{{ driver_info.driverid.first_name }}" class="form-control">
                                    
                                 </div>
                             </div>
@@ -64,7 +53,7 @@
                                     <label for="email-input" class=" form-control-label">Last Name</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="last_name" name="last_name" value="{{ driver_info.last_name }}" class="form-control">
+                                    <input type="text" id="last_name" name="last_name" value="{{ driver_info.driverid.last_name }}" class="form-control">
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -96,7 +85,7 @@
                                     <label for="email-input" class=" form-control-label">Email</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="email" id="email" name="email"value="{{ driver_info.email }}" class="form-control">
+                                    <input type="email" id="email" name="email"value="{{ driver_info.driverid.email }}" class="form-control">
                                 </div>
                             </div>
                             <div class="row form-group">

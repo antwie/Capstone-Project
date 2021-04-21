@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block nav_content %}
+<nav class="navbar-sidebar">
+    <ul class="list-unstyled navbar__list">
+        <li >
+            <a class="js-arrow" href="{% url 'ocrAdmin:incidence' %}">
+                <i class="fas fa-home"></i>Home</a>
+        </li>
+        <li class="active">
+            <a href="{% url 'ocrAdmin:drivers_list' %}">
+                <i class="fas fa-bus"></i>Car Owners</a>
+        </li>
+        <li>
+            <a href="table.html">
+                <i class="fas fa-table"></i>Tables</a>
+        </li>
+       
+        
+        <li>
+            <a href="map.html">
+                <i class="fas fa-map-marker-alt"></i>Maps</a>
+        </li>
+      
+     
+    </ul>
+</nav>
+{% endblock nav_content %}
+{% block content %}
+<div class="main-content">
+    <div class="section__content ">
+        <div class="container-fluid">
+            <div class="row" style="justify-content: center;">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Edit </strong> Profile
+                    </div>
+                    <div class="card-body card-block">
+                        <form action="{% url 'ocrAdmin:driver' %}"  method="post"  class="">
+                            {% csrf_token %}
+
+                           
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="email-input" class=" form-control-label" >First Name</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="first_name" name="first_name"  class="form-control">
+                                   
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="email-input" class=" form-control-label">Last Name</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="last_name" name="last_name"   class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="select" class=" form-control-label">Gender</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <select name="gender" id="select"   class="form-control">
+                                        
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="street" class=" form-control-label">Address</label>
+                                <input type="text" id="street" name="address"   class="form-control">
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="phone-input" class=" form-control-label">Mobile</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="mobile" name="mobile"   class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="email-input" class=" form-control-label">Email</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="email" id="email" name="email"  class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="email-input" class=" form-control-label">License Plate</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="licensePlate" name="licensePlate"   class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="email-input" class=" form-control-label">Vehicle Type</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="vtype" name="vtype"   class="form-control">
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> Save
+                                </button>
+                               
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

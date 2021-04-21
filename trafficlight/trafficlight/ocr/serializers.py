@@ -73,13 +73,14 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'password')
-        extra_kwargs = {'password': {'write_only': True}, 'email': {'write_only': True, 'required':False}}
+        fields = ('id', 'username', 'password')
+        extra_kwargs = {'password': {'write_only': True}, 'username': {'write_only': True, 'required':False}}
 
 
-    def create(self, validated_data):
-        # authenticates user-> note: email is swapped with username
-        user = authenticate(username=validated_data['email'], password=validated_data['password'])
+    def update(self, validated_data):
+        print("something")
+        user = authenticate(username=validated_data['username'], password=validated_data['password'])
+        
         # user exists and is activated
         if  (user is not None) and user.is_active:
             return user
@@ -130,34 +131,42 @@ class DriverUpdateSerializer(serializers.ModelSerializer):
 class PostCrimeDatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Incidence
-        fields = ['Driver','traffic_light_no','licensePlate','vehicleType','color','model','offence','accuracy_score']
-        read_only_fields = ('Driver',)
+        
+        fields = ['driver','traffic_light_no','licensePlate','color','model','offence','offence_payment','accuracy_score']
+        read_only_fields = ('driver',)
 
     def create(self, validated_data):
         try:
             driver = Driver.objects.filter(licensePlate= validated_data['licensePlate']).first()
+            
             created = Incidence.objects.create(
-                Driver = driver,
+                driver = driver,
                 traffic_light_no = validated_data['traffic_light_no'],
                 licensePlate = validated_data['licensePlate'],
-                vehicleType = validated_data['vehicleType'],
                 color = validated_data['color'],
                 model =  validated_data['model'],
                 offence =  validated_data['offence'],
+                offence_payment = validated_data['offence_payment'],
                 accuracy_score = validated_data['accuracy_score'],
             )
+            
+            crime_count = licensePlate.objects.filter(driver =driver)[0]
+            print(crime_count.crime_case_count)
+            crime_count.crime_case_count = crime_count.crime_case_count + 1
+            crime_count.save()
 
             return created
         except IntegrityError:
+            #raise Exception
             raise ValidationError('Driver not found in our database')
             
-       
+
 
 class GetCrimeDatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Incidence
         
-        fields = ['Driver','traffic_light_no','licensePlate','vehicleType','color','model','offence','accuracy_score']
+        fields = ['driver','traffic_light_no','licensePlate','vehicleType','color','model','offence','accuracy_score','offence_payment']
 
 
 
@@ -165,4 +174,4 @@ class DriverListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Driver
         
-        fields = ['title','first_name','last_name','gender','mobile','email','licensePlate','vehicleType','date_created']
+        fields = ['driverid','first_name','last_name','gender','mobile','email','licensePlate','vehicleType','date_created']

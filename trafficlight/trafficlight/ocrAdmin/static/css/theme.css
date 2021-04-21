@@ -1257,13 +1257,7 @@ section {
     -ms-flex-pack: justify;
     justify-content: space-between;
 }
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    .header-wrap .account-item > .content {
-        display: none;
-    }
-}
-
+ 
 @media (max-width: 991px) {
     .header-wrap {
         -webkit-box-orient: vertical;
@@ -1303,6 +1297,7 @@ section {
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    width: 100%;
 }
 
 @media (max-width: 991px) {
@@ -1405,10 +1400,14 @@ section {
 
 .account-wrap {
     position: relative;
+    width: 100%;
 }
 
 .account-item {
     cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .account-item .image {

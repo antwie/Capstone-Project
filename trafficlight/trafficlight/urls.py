@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.urls import path, include
 from django.contrib import admin
-from django.conf.urls.static import static
-from django.conf import settings
+# from django.conf.urls.static import static
+# from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +25,8 @@ urlpatterns = [
     path('api/v1/ocr/', include('trafficlight.ocr.urls', namespace='ocr')),
     #path('ocr/', include('trafficlight.ocrAdmin.urls', namespace='ocrAdmin')),
     path('', include('trafficlight.ocrAdmin.urls', namespace='ocrAdmin')),
+    path('driver/', include('trafficlight.authentication.urls', namespace='driver')),
+
 ]
 
 # for file uploads

@@ -1,0 +1,38 @@
+{% extends "authentication/base.html" %}
+
+{% block login_content%}
+<form class="login100-form validate-form" method="post" action="{% url 'driver:login_driver_id' %}">
+    {% csrf_token %}
+    <span class="login100-form-logo">
+						<i class="fa fa-home" style="color: #923D41;"></i>
+					</span>
+    <div style="padding: 30px 0px;text-align: center;color: white;font-size: 23px;">
+        {% if invalidID %}
+        Invalid student ID
+        {% else %}
+        Student ID
+        {% endif %}
+
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Enter valid Car Number plate">
+        <input class="input100" type="text" name="carNumber" placeholder="Enter Car Number plate">
+        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+    </div>
+
+    <div class="prompt_studentID">
+        <p>
+            Car Number not found
+        </p>
+    </div>
+    <div class="container-login100-form-btn">
+        <button class="login100-form-btn" href="password.html">
+            Next
+        </button>
+    </div>
+    <div class="text-center p-t-90">
+        <a class="txt1" href="#">
+        </a>
+    </div>
+</form>
+{% endblock login_content%}

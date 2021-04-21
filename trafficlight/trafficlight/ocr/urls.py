@@ -31,7 +31,8 @@ urlpatterns = [
     #view all drivers in database
     path('drivers/', views.DriverList.as_view()),
     path('SingleDriverInfo/<str:phone>/',views.SingleDriverInfoAPIView.as_view(), name ="driverdetail"),
-    path('alldata/',views.IncidenceList.as_view(), name ="incidence"),
+    path('allincidence/',views.IncidenceList.as_view(), name ="listincidence"),
+    path('create/incidence',views.CrimeDataCreateAPIView.as_view(), name ="createincidence"),
 
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -1,8 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from trafficlight.ocr.models import  UserProfile,Driver,licensePlate,Incidence
+from django.views.generic import TemplateView
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+
+@login_required
+def PaymentView(request):
+    return render(request,"my_payment_template.html")
+
+
 
 @login_required
 def LoginView(request):
@@ -74,3 +85,52 @@ def UpdateDriverProfile(request,driverID):
 
             return render(request,"Something went wrong")
        
+
+
+@login_required
+def AddDriverCreate(request):
+    if request.method == "POST": 
+
+        try:
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            gender = request.POST.get('gender')
+            email = request.POST.get('email')
+            mobile = request.POST.get('mobile')
+            address = request.POST.get('address')
+            vehicleType = request.POST.get('vtype')
+            licensep = request.POST.get('licensePlate')
+
+            _, created = User.objects.update_or_create(
+                username = str(licensep),
+                first_name = first_name,
+                last_name = last_name,
+                email = email,
+                
+            )
+
+            
+            _, created = Driver.objects.update_or_create(
+                driverid = _, 
+                mobile = mobile,
+                address = address,
+                vehicleType = vehicleType,
+                licensePlate = licensep,
+                gender = gender
+            )
+            print(_)
+            _, created = licensePlate.objects.update_or_create(
+                driver = _, 
+                licensePlate = licensep,
+                crime_case_count = 0
+            )
+
+
+            return HttpResponseRedirect(reverse('ocrAdmin:drivers_list'))
+        except Exception :
+            raise Exception
+
+            return render(request,"Something went wrong")
+
+    else:
+        return render(request,"create_profile.html")

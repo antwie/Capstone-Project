@@ -48,18 +48,22 @@
                                                         <div class="dropDownSelect2"></div>
                                                     </div>
                                                     <div class="rs-select2--light rs-select2--sm">
-                                                        <form class="form-header" action="" method="POST">
-                                                            <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                                                            <!-- <button class="au-btn--submit" type="submit">
-                                                                <i class="zmdi zmdi-search"></i>
-                                                            </button> -->
-                                                        </form>
+                                                        
+                                                            <form class="form-header" action="" method="POST">
+                                                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                                                <!-- <button class="au-btn--submit" type="submit">
+                                                                    <i class="zmdi zmdi-search"></i>
+                                                                </button> -->
+                                                            </form>
+                                                        
                                                     </div>
                                                    
                                                 </div>
                                                 <div class="table-data__tool-right">
-                                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                                        <i class="zmdi zmdi-plus"></i>add Driver</button>
+                                                    <a href="{% url 'ocrAdmin:driver' %}">
+                                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                                            <i class="zmdi zmdi-plus"></i>add Driver</button>
+                                                    </a>
                                                     <!-- <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                                         <select class="js-select2" name="type">
                                                             <option selected="selected">Export</option>
@@ -83,14 +87,14 @@
                                                             <th>Car No</th>
                                                             <th>Vehicle type</th>
                                                 
-                                                            <th></th>
+                                                            <th>gh</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {% for drivers in drivers %}
                                                         <tr class="tr-shadow odd gradeX">
                                                             
-                                                            <td>{{ drivers.first_name }} {{drivers.last_name}}</td>
+                                                            <td>{{ drivers.driverid.first_name }} {{drivers.driverid.last_name}}</td>
                                                             <td class="desc">
                                                                {{drivers.mobile}}
                                                             </td>
@@ -114,6 +118,9 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
+                                                        <tr class="spacer"></tr>
+                                                      
+                                                        <tr class="spacer"></tr>
                                                         
                                                         {% endfor %}
                                                     </tbody>

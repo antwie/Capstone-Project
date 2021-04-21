@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from .email_credentials import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,6 +29,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['*','ashesi-trafficlight.herokuapp.com']
 
 
+# EMAIL CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_USE_TLS = EMAIL_USE_TLS
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+DEFAULT_FROM_EMAIL = DEFAULT_FROM_EMAIL
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,8 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'trafficlight.ocr',
     'trafficlight.ocrAdmin',
+    'trafficlight.authentication',
     'rest_framework',
     'rest_framework.authtoken',
+    
 
 ]
 
@@ -164,6 +174,14 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-
+#Authentication URLs
 LOGIN_REDIRECT_URL ='/incidence/'
 LOGOUT_REDIRECT_URL = '/incidence'
+REDIRECT_FIELD_NAME = 'driver/'
+
+#Flutter wave payment gateway
+FLW_PRODUCTION_PUBLIC_KEY = "FLWPUBK-396c7563d0a154f50a9f81381cdac608-X"
+FLW_PRODUCTION_SECRET_KEY = "FLWSECK-ae2f850e39d61be3731dc5abcfced3a8-X"
+FLW_SANDBOX_PUBLIC_KEY = "FLWPUBK-396c7563d0a154f50a9f81381cdac608-X"
+FLW_SANDBOX_SECRET_KEY = "FLWSECK-ae2f850e39d61be3731dc5abcfced3a8-X"
+FLW_SANDBOX = True

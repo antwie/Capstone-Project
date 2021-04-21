@@ -1,0 +1,33 @@
+{% extends "authentication/base.html" %}
+
+{% block login_content%}
+				<form class="login100-form validate-form" method="post" action="{% url 'driver:country_info' %}">
+					{% csrf_token %}
+					<span class="login100-form-logo">
+						<i class="fa fa-drivers-license" style="color: #923D41;"></i>
+					</span>
+					<div style="padding: 30px 0px;text-align: center;color: white;font-size: 23px;">
+						Country
+					</div>
+				
+					<div class="wrap-input100 validate-input" data-validate="Enter valid country name">
+						<input class="input100" type="text" name="country" placeholder="Enter your country name">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+					
+					<div class="prompt_studentID">
+						<p>
+							Something went wrong
+						</p>
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" href="password.html">
+							Finish
+						</button>
+					</div>
+					<div class="text-center p-t-90">
+						<a class="txt1" href="#">
+						</a>
+					</div>
+				</form>
+{% endblock login_content%}

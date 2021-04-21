@@ -16,6 +16,7 @@ urlpatterns = [
     path("drivers/edit/<int:driverID>/", EditDriverProfile, name="edit_info"),
     path("drivers/update/<int:driverID>/", UpdateDriverProfile , name="update_info"),
     path("daniel/", TryView),
+    path("driver/create/", AddDriverCreate, name="driver"),
     # path("student/", views.SignInStudentIDlView, name="login_student_id"),
     # path("country/", views.StudentCountry, name="country_info"),
     # path("password/<int:studentID>/", views.SignInPasswordlView, name="login_password"),
